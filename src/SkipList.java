@@ -23,7 +23,7 @@ public class SkipList {
     }
 
 
-    private int randheight() {
+    private int flipcoin() {
     /* liefert eine zufaellige Hoehe zwischen 0 und maxHeight */
         int height = 0;
         while (RandomNumber.randint() % 2 == 1) {
@@ -68,7 +68,7 @@ public class SkipList {
             return; // Schluessel bereits vorhanden
         }
 
-        int newheight = randheight();
+        int newheight = flipcoin();
         if (newheight > maxHeight) {
       /* neues Kopfelement schaffen */
             SkipListNode oldHead = head;
@@ -92,7 +92,7 @@ public class SkipList {
         }
 
         if (newheight > height) {
-      /* aktuelle H"ohe der Skip-Liste anpassen */
+      /* aktuelle Hoehe der Skip-Liste anpassen */
             for (int i = height + 1; i <= newheight; i++)
                 update[i] = head;
             height = newheight;
@@ -101,7 +101,7 @@ public class SkipList {
         p = new SkipListNode(key, newheight);
 
         for (int i = 0; i <= newheight; i++) {
-      /* f"uge p in Niveau i nach update[i] ein */
+      /* fuege p in Niveau i nach update[i] ein */
             p.next[i] = update[i].next[i];
             update[i].next[i] = p;
         }
